@@ -1,100 +1,79 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <title>Titanic Survival Prediction</title>
-
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
-          rel="stylesheet">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#f5f6f8">
+  <title>Titanic Insights · Passenger analytics</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@500;600;700;800&display=swap" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.7/dist/chart.umd.min.js"></script>
+  <style>
+    :root{--ink:#202a36;--muted:#7b8794;--line:#e9edf1;--paper:#fff;--bg:#f5f6f8;--blue:#4676e8;--blue-light:#edf2ff;--teal:#45b6a2;--gold:#e8a94b;--red:#de7180;--shadow:0 8px 30px rgba(36,48,66,.045)}
+    *{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--bg);color:var(--ink);font:14px 'DM Sans',sans-serif}.shell{max-width:1340px;margin:auto;padding:0 36px}.topbar{height:76px;border-bottom:1px solid var(--line);background:rgba(255,255,255,.9);display:flex;align-items:center;position:sticky;top:0;z-index:5;backdrop-filter:blur(14px)}.top-inner{display:flex;align-items:center;justify-content:space-between;width:100%}.brand{display:flex;align-items:center;gap:11px;font:800 16px Manrope,sans-serif;letter-spacing:-.5px}.brand-mark{height:35px;width:35px;border-radius:11px;background:var(--blue);display:grid;place-items:center;color:white;font-size:18px;box-shadow:0 5px 12px #4676e844}.brand small{font:500 11px 'DM Sans',sans-serif;color:var(--muted);display:block;letter-spacing:0;margin-top:2px}.nav{display:flex;gap:7px}.nav a{text-decoration:none;color:#737e8b;padding:9px 13px;border-radius:9px;font-weight:600;font-size:13px}.nav a:first-child,.nav a:hover{background:var(--blue-light);color:var(--blue)}.live{font-size:11px;color:#667383;display:flex;align-items:center;gap:8px}.dot{width:8px;height:8px;border-radius:50%;background:#55ba92;box-shadow:0 0 0 4px #55ba9220}.main{padding-top:36px;padding-bottom:60px}.eyebrow{font-size:11px;text-transform:uppercase;letter-spacing:1.6px;color:var(--blue);font-weight:700}.heading{display:flex;align-items:flex-end;justify-content:space-between;margin-bottom:24px;animation:rise .55s both}.heading h1{font:800 30px Manrope,sans-serif;letter-spacing:-1.2px;margin:7px 0 5px}.heading p{color:var(--muted);margin:0}.dataset-pill{padding:9px 12px;border:1px solid var(--line);background:white;border-radius:10px;color:#64707e;font-size:12px}.dataset-pill strong{color:var(--ink)}.metrics{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-bottom:19px}.metric,.panel,.predict{background:var(--paper);border:1px solid var(--line);border-radius:15px;box-shadow:var(--shadow)}.metric{padding:18px 20px;position:relative;overflow:hidden;animation:rise .55s both}.metric:nth-child(2){animation-delay:.06s}.metric:nth-child(3){animation-delay:.12s}.metric:nth-child(4){animation-delay:.18s}.metric-top{display:flex;justify-content:space-between;align-items:center;color:var(--muted);font-size:12px;font-weight:600}.icon{width:31px;height:31px;border-radius:9px;display:grid;place-items:center;background:#eff3ff;color:var(--blue);font-size:15px}.metric-number{font:800 27px Manrope,sans-serif;letter-spacing:-1px;margin:14px 0 4px}.metric-foot{font-size:11px;color:var(--muted)}.up{color:#40a788;font-weight:700}.section-title{display:flex;align-items:center;justify-content:space-between;margin:28px 2px 13px}.section-title h2{font:700 17px Manrope,sans-serif;letter-spacing:-.3px;margin:0}.section-title span{font-size:11px;color:var(--muted)}.charts{display:grid;grid-template-columns:1.2fr 1fr 1fr;gap:16px}.panel{padding:19px 20px;min-width:0;animation:rise .65s both}.panel-head{display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:15px}.panel h3{font:700 13px Manrope,sans-serif;margin:0 0 4px}.panel-sub{font-size:11px;color:var(--muted)}.chart-wrap{height:206px;position:relative}.chart-wide{grid-column:span 2}.chart-wide .chart-wrap{height:220px}.insight{margin-top:12px;padding:11px 12px;background:#f6f8fc;border-radius:9px;color:#606e7c;font-size:11px;line-height:1.55}.insight strong{color:var(--ink)}.lower{display:grid;grid-template-columns:1.35fr .85fr;gap:16px;margin-top:16px}.analysis{padding:21px}.analysis-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:16px}.finding{padding:14px;background:#f8f9fb;border-radius:11px}.finding b{font:700 13px Manrope,sans-serif;display:block;margin-bottom:6px}.finding p{margin:0;color:#74808d;font-size:11px;line-height:1.55}.finding em{color:var(--blue);font-style:normal;font-weight:700}.predict{padding:21px}.predict-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:7px}.predict h2{font:700 17px Manrope,sans-serif;margin:0}.predict p{font-size:12px;color:var(--muted);margin:0 0 17px}.form-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}.field label{display:block;font-size:11px;font-weight:600;color:#606d7a;margin-bottom:6px}.field input,.field select{width:100%;height:39px;border:1px solid #e4e8ed;border-radius:8px;padding:0 10px;font:13px 'DM Sans',sans-serif;color:var(--ink);background:white;outline:none;transition:.2s}.field input:focus,.field select:focus{border-color:#89a5f2;box-shadow:0 0 0 3px #4676e81c}.submit{grid-column:span 2;height:42px;border:0;border-radius:9px;background:var(--blue);color:white;font:700 13px 'DM Sans',sans-serif;cursor:pointer;box-shadow:0 6px 13px #4676e833;transition:transform .2s,box-shadow .2s}.submit:hover{transform:translateY(-2px);box-shadow:0 9px 18px #4676e844}.result{margin-top:14px;padding:12px;border-radius:9px;background:#eef7f4;color:#287e67;font-weight:700}.footer{text-align:center;padding:16px;color:#99a2ac;font-size:11px;border-top:1px solid var(--line)}@keyframes rise{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:translateY(0)}}@media(max-width:950px){.charts{grid-template-columns:1fr 1fr}.chart-wide{grid-column:span 2}.lower{grid-template-columns:1fr}.metrics{grid-template-columns:repeat(2,1fr)}}@media(max-width:600px){.shell{padding:0 17px}.topbar{height:64px}.nav{display:none}.main{padding-top:25px}.heading{align-items:flex-start;gap:12px;flex-direction:column}.heading h1{font-size:26px}.metrics{gap:10px}.metric{padding:14px}.metric-number{font-size:23px}.charts{grid-template-columns:1fr}.chart-wide{grid-column:auto}.chart-wide .chart-wrap{height:200px}.chart-wrap{height:190px}.analysis-grid{grid-template-columns:1fr}.section-title{margin-top:23px}.dataset-pill{font-size:11px}}
+    @media(prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.01ms!important;scroll-behavior:auto!important;transition-duration:.01ms!important}}
+  </style>
 </head>
+<body>
+  <header class="topbar"><div class="shell top-inner">
+    <div class="brand"><div class="brand-mark">⚓</div><div>Titanic Insights<small>Passenger analytics platform</small></div></div>
+    <nav class="nav"><a href="#overview">Overview</a><a href="#analysis">Analysis</a><a href="#predict">Prediction</a></nav>
+    <div class="live"><span class="dot"></span> Dataset loaded</div>
+  </div></header>
+  <main class="shell main" id="overview">
+    <div class="heading"><div><div class="eyebrow">Passenger manifest · 1912</div><h1>Voyage at a glance</h1><p>Explore who survived, and how outcomes differed across the passenger list.</p></div><div class="dataset-pill">Source <strong> Titanic-Dataset.csv</strong> &nbsp;·&nbsp; {{ stats.total }} records</div></div>
+    <section class="metrics" aria-label="Dataset summary">
+      <article class="metric"><div class="metric-top">Passengers recorded <span class="icon">♙</span></div><div class="metric-number">{{ '{:,}'.format(stats.total) }}</div><div class="metric-foot">Across all passenger classes</div></article>
+      <article class="metric"><div class="metric-top">Survived <span class="icon" style="background:#eaf7f3;color:#45a98f">♥</span></div><div class="metric-number">{{ '{:,}'.format(stats.survived) }}</div><div class="metric-foot"><span class="up">{{ stats.survival_rate }}%</span> of recorded passengers</div></article>
+      <article class="metric"><div class="metric-top">Overall survival rate <span class="icon" style="background:#fff6e9;color:#d49a3f">◒</span></div><div class="metric-number">{{ stats.survival_rate }}<span style="font-size:17px;color:#84909e">%</span></div><div class="metric-foot">{{ 100 - stats.survival_rate }}% did not survive</div></article>
+      <article class="metric"><div class="metric-top">Average recorded age <span class="icon" style="background:#f5efff;color:#9370c9">⌁</span></div><div class="metric-number">{{ stats.average_age }}<span style="font-size:17px;color:#84909e"> yrs</span></div><div class="metric-foot">{{ stats.ages.counts|sum }} passengers with age data</div></article>
+    </section>
 
-<body class="bg-light">
+    <div class="section-title"><h2>Survival patterns</h2><span>Share of passengers who survived · hover for details</span></div>
+    <section class="charts">
+      <article class="panel chart-wide"><div class="panel-head"><div><h3>Survival by passenger class</h3><div class="panel-sub">Class shows the clearest difference in outcomes</div></div><span class="icon">▥</span></div><div class="chart-wrap"><canvas id="classChart" aria-label="Survival rate by class"></canvas></div><div class="insight">First class survival was <strong>{{ stats.class.rates[0] }}%</strong> compared with <strong>{{ stats.class.rates[2] }}%</strong> in third class.</div></article>
+      <article class="panel"><div class="panel-head"><div><h3>Survival by sex</h3><div class="panel-sub">Women and men</div></div><span class="icon">◉</span></div><div class="chart-wrap"><canvas id="sexChart" aria-label="Survival by sex"></canvas></div><div class="insight">Women survived at a much higher rate: <strong>{{ stats.sex.rates[0] }}%</strong> vs <strong>{{ stats.sex.rates[1] }}%</strong>.</div></article>
+      <article class="panel"><div class="panel-head"><div><h3>Survival by age</h3><div class="panel-sub">Recorded ages only</div></div><span class="icon">⌁</span></div><div class="chart-wrap"><canvas id="ageChart" aria-label="Survival by age group"></canvas></div><div class="insight">Children (under 18) had a <strong>{{ stats.ages.rates[0] }}%</strong> survival rate among those with age data.</div></article>
+      <article class="panel"><div class="panel-head"><div><h3>Embarkation port</h3><div class="panel-sub">Survival rate by port</div></div><span class="icon">⌖</span></div><div class="chart-wrap"><canvas id="portChart" aria-label="Survival by port"></canvas></div></article>
+    </section>
 
-    <div class="container mt-5">
-        <div class="card shadow p-4">
-
-            <h1 class="card-title mb-4 text-primary">
-                Titanic Survival Prediction
-            </h1>
-
-            <p class="card-text">
-                Enter the details of a passenger to predict their survival on the Titanic.
-            </p>
-
-            <form action="/predict" method="post">
-
-                <div class="mb-3">
-                    <label for="pclass" class="form-label">
-                        Passenger Class (1, 2, or 3):
-                    </label>
-                    <input type="number" class="form-control"
-                           id="pclass" name="pclass"
-                           min="1" max="3" required>
-                </div>
-
-                <div class="mb-3">
-                    <label for="sex" class="form-label">
-                        Sex (male or female):
-                    </label>
-                    <select class="form-select" id="sex" name="sex" required>
-                        <option value="">Select sex</option>
-                        <option value="male">Male</option>
-                        <option value="female">Female</option>
-                    </select>
-                </div>
-
-                <div class="mb-3">
-                    <label for="age" class="form-label">Age:</label>
-                    <input type="number" class="form-control"
-                           id="age" name="age"
-                           min="0" step="0.1" required>
-                </div>
-
-                <div class="mb-3">
-                    <label for="sibsp" class="form-label">
-                        Number of Siblings/Spouses Aboard:
-                    </label>
-                    <input type="number" class="form-control"
-                           id="sibsp" name="sibsp"
-                           min="0" required>
-                </div>
-
-                <div class="mb-3">
-                    <label for="parch" class="form-label">
-                        Number of Parents/Children Aboard:
-                    </label>
-                    <input type="number" class="form-control"
-                           id="parch" name="parch"
-                           min="0" required>
-                </div>
-
-                <div class="mb-3">
-                    <label for="fare" class="form-label">Fare:</label>
-                    <input type="number" class="form-control"
-                           id="fare" name="fare"
-                           min="0" step="0.01" required>
-                </div>
-
-                <button type="submit" class="btn btn-primary w-100">
-                    Predict Survival
-                </button>
-
-            </form>
-
-            {% if result %}
-            <div class="alert alert-info mt-4" role="alert">
-                <h4>
-                    Titanic Prediction:
-                    <strong>{{ result }}</strong>
-                </h4>
-            </div>
-            {% endif %}
-
-        </div>
-    </div>
-
+    <section class="lower" id="analysis">
+      <article class="panel analysis"><div class="eyebrow">What the data says</div><h2 style="font:700 17px Manrope;margin:6px 0 0">A few patterns stand out</h2><div class="analysis-grid">
+        <div class="finding"><b>Class mattered</b><p>Survival fell from <em>{{ stats.class.rates[0] }}%</em> in first class to <em>{{ stats.class.rates[2] }}%</em> in third class.</p></div>
+        <div class="finding"><b>Women had higher survival</b><p><em>{{ stats.sex.rates[0] }}%</em> of women survived, compared with <em>{{ stats.sex.rates[1] }}%</em> of men.</p></div>
+        <div class="finding"><b>Age coverage is incomplete</b><p>Age was recorded for {{ stats.ages.counts|sum }} of {{ stats.total }} passengers; age charts use those records only.</p></div>
+      </div></article>
+      <section class="predict" id="predict"><div class="predict-head"><h2>Try a prediction</h2><span class="icon">✦</span></div><p>Enter a passenger profile for a model prediction.</p>
+        <form action="/predict" method="post" class="form-grid">
+          <div class="field"><label for="pclass">Passenger class</label><select id="pclass" name="pclass" required><option value="" disabled selected>Select class</option><option value="1">First class</option><option value="2">Second class</option><option value="3">Third class</option></select></div>
+          <div class="field"><label for="sex">Sex</label><select id="sex" name="sex" required><option value="" disabled selected>Select sex</option><option value="female">Female</option><option value="male">Male</option></select></div>
+          <div class="field"><label for="age">Age</label><input type="number" id="age" name="age" min="0" max="100" step="0.1" placeholder="e.g. 28" required></div>
+          <div class="field"><label for="embarked">Embarkation port</label><select id="embarked" name="embarked" required><option value="" disabled selected>Select port</option><option value="C">Cherbourg</option><option value="Q">Queenstown</option><option value="S">Southampton</option></select></div>
+          <div class="field"><label for="sibsp">Siblings / spouses</label><input type="number" id="sibsp" name="sibsp" min="0" max="10" value="0" required></div>
+          <div class="field"><label for="parch">Parents / children</label><input type="number" id="parch" name="parch" min="0" max="10" value="0" required></div>
+          <div class="field" style="grid-column:span 2"><label for="fare">Fare paid</label><input type="number" id="fare" name="fare" min="0" step="0.01" placeholder="e.g. 32.50" required></div>
+          <button class="submit" type="submit">Predict survival <span aria-hidden="true">→</span></button>
+        </form>
+        {% if result %}<div class="result" role="status">Prediction result: {{ result }}</div>{% endif %}
+      </section>
+    </section>
+  </main>
+  <footer class="footer">Titanic passenger data exploration · Charts summarize recorded dataset values</footer>
+  <script>
+    const stats = {{ stats|tojson }};
+    Chart.defaults.font.family = "'DM Sans', sans-serif";
+    Chart.defaults.color = '#87929e';
+    Chart.defaults.plugins.legend.display = false;
+    Chart.defaults.plugins.tooltip.backgroundColor = '#202a36';
+    Chart.defaults.plugins.tooltip.padding = 10;
+    Chart.defaults.plugins.tooltip.cornerRadius = 8;
+    const grid = {color:'#edf0f3', drawBorder:false};
+    const pct = {beginAtZero:true,max:100,grid,ticks:{stepSize:25,callback:value=>value+'%',font:{size:10}}};
+    new Chart(document.getElementById('classChart'),{type:'bar',data:{labels:stats.class.labels,datasets:[{label:'Survival rate',data:stats.class.rates,backgroundColor:['#4676e8','#45b6a2','#e8a94b'],borderRadius:7,maxBarThickness:52},{label:'Passengers',data:stats.class.counts,hidden:true}]},options:{maintainAspectRatio:false,animation:{duration:950,easing:'easeOutQuart'},plugins:{legend:{display:true,position:'bottom',labels:{usePointStyle:true,boxWidth:7,boxHeight:7,padding:17,font:{size:10}},onClick:(event,legendItem,legend)=>{const index=legendItem.datasetIndex;const chart=legend.chart;chart.setDatasetVisibility(index,!chart.isDatasetVisible(index));chart.update();}} ,tooltip:{callbacks:{label:ctx=>ctx.dataset.label==='Survival rate'?` ${ctx.raw}% survived`:` ${ctx.raw} passengers`}}},scales:{y:pct,x:{grid:{display:false},ticks:{font:{size:11}}}}}});
+    new Chart(document.getElementById('sexChart'),{type:'doughnut',data:{labels:stats.sex.labels,datasets:[{data:stats.sex.rates,backgroundColor:['#45b6a2','#dce3eb'],borderWidth:0,hoverOffset:5}]},options:{maintainAspectRatio:false,cutout:'72%',animation:{animateRotate:true,duration:900},plugins:{tooltip:{callbacks:{label:ctx=>` ${ctx.label}: ${ctx.raw}% survived`}}}}});
+    new Chart(document.getElementById('ageChart'),{type:'line',data:{labels:stats.ages.labels,datasets:[{data:stats.ages.rates,borderColor:'#8c70d6',backgroundColor:'#8c70d61a',fill:true,tension:.38,pointRadius:4,pointHoverRadius:6,pointBackgroundColor:'#8c70d6',borderWidth:2}]},options:{maintainAspectRatio:false,animation:{duration:900},plugins:{tooltip:{callbacks:{label:ctx=>` ${ctx.raw}% survived · ${stats.ages.counts[ctx.dataIndex]} records`}}},scales:{y:pct,x:{grid:{display:false},ticks:{font:{size:9}}}}}});
+    new Chart(document.getElementById('portChart'),{type:'bar',data:{labels:stats.embarked.labels,datasets:[{data:stats.embarked.rates,backgroundColor:['#4676e8','#45b6a2','#e8a94b'],borderRadius:6,maxBarThickness:34}]},options:{indexAxis:'y',maintainAspectRatio:false,animation:{duration:900},plugins:{tooltip:{callbacks:{label:ctx=>` ${ctx.raw}% survived · ${stats.embarked.counts[ctx.dataIndex]} passengers`}}},scales:{x:pct,y:{grid:{display:false},ticks:{font:{size:10}}}}}});
+  </script>
 </body>
 </html>

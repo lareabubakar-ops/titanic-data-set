@@ -1,0 +1,8 @@
+flask
+gunicorn
+itsdangerous
+jinja2
+markupsafe
+werkzeug
+scikit-learn
+numpy

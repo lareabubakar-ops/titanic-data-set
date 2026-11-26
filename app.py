@@ -13,6 +13,14 @@ with (BASE_DIR / 'titanic_model.pkl').open('rb') as model_file:
 def home():
     return render_template('index.html')
 
+
+@app.route('/predict', methods=['POST'])
+def predict():
+    # Get form values
+    # Process values
+    # Run model prediction
+    # Return prediction
+    pass
 @app.route('/predict', methods=['POST'])
 def predict():
     # Get the input values from the form
